@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" 
+  rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="static/style.css">
+
+<title>Make a Reservation</title>
+<head>
+    <h4>Melon Reservation Scheduler</h4>
+</head>
+<body>
+  <div id="emailbox">
+  <form action="/email" method="POST">
+    <label for="email">Please Enter your email to make a Reservation</label><br>
+    <input type="text" id="email" name="user-email">
+    <button type="submit" id="emailsubmission">Submit Email</button>
+  </form>
+</div>
+  <br>
+
+  {% if 'user_email' in session %}
+  <div>
+    <form id="select-date" method="POST">
+      <label for="date">Choose a Reservation Date: </label>
+      <input type="date" name="selected-date" id="selected-date">
+      <button type="submit" id="submit-date">Select this Date</button>
+      <br>
+    </form>
+  </div>
+
+  <br>
+    <div class="d-none" id="remove">
+    <form id="submit-reservation">
+      <label for="time">Choose a Reservation time:</label>
+      <input id="time" list="times" type="time" name="selected-time">
+      <datalist id="times">
+      </datalist>
+      <br>
+      <button type="submit" id="new_res">Submit Reservation</button>
+    </form>
+  </div>
+<br>
+<br>
+
+
+<button id="seeres">See Your Reservations</button>
+<div id="personal_res">
+</div>
+{% endif %}
+</body>
+<script type="text/javascript" src="/static/reservations.js"></script>
+</html>
