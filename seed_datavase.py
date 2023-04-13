@@ -13,11 +13,8 @@ model.db.create_all()
 """Seeding for test Users"""
 
 for n in range(10):
-    fname = f'tester{n}'
     email = f'user{n}@test.com' 
-    password = 'test'
-
-    user = crud.create_user(fname, email, password)
+    user = crud.create_user(email)
     model.db.session.add(user)
 
 model.db.session.commit()

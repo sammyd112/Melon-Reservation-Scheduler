@@ -12,10 +12,9 @@ class User(db.Model):
                         autoincrement=True,
                         primary_key=True)
     email = db.Column(db.String, unique=True)
-    password = db.Column(db.String) 
 
     def __repr__(self):
-        return f'<User email={self.email}>'
+        return f'<User email={self.email} user_id={self.user_id}>'
     
 class Reservation(db.Model):
     """A reservation."""
@@ -27,11 +26,12 @@ class Reservation(db.Model):
                         primary_key=True)
     user_id = db.Column(db.Integer, 
                        db.ForeignKey('users.user_id'))
-    res_datetime = db.Column(db.Datetime)
+    date = db.Column(db.Date)
+    time = db.Column(db.Time)
     
 
     def __repr__(self):
-        return f'<User user_id={self.fname} ={self.email}>'
+        return f'<Reservation date={self.date} time={self.time}>'
 
 def connect_to_db(flask_app, db_uri="postgresql:///reservations", echo=False):
     flask_app.config["SQLALCHEMY_DATABASE_URI"] = db_uri
